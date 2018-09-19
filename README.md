@@ -1,0 +1,2 @@
+# methPattern
+WGBS compact representation
