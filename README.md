@@ -67,12 +67,17 @@ The rest of the nucleotides, and therefore the genomic distances between adjacen
 
 Example:
 // todo: add example
+```
+chr4    6758539 CCCT    1
+chr4    6758539 CCTCC.C 1
+```
 - chrom: value is a string from _{chr1, chr2, …, chrX, chrY, chrM}_
 - CpG_index: integer in range [1-28217448]. The index of the first site occurring on the current read. The file is sorted by this column.
 - methylation pattern: a string of characters from {'C', 'T', '.'} representing the methylation pattern on the current read.
 
 **Note:** The pat file is sorted by CpG_index column, differ from the genome browser order (sort -k1,1 -k2,2n)
 
-
+## unq.gz file
+A gzipped...
 
 
