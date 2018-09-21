@@ -1,10 +1,8 @@
 # methPattern
-'methPattern' is a pipeline for working with Whole Genome Bisulfite Sequenced (WGBS) data.
-It converts bam files to compact presentation formats.
-
-### Notations
-The CpG sites are indexed and named CpG1, CpG2, …, CpG28217448, according to their order on the human genome ([hg19](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.13/)). In order to save space, our formats only keep data regarding these sites, ignoring other nucleotides.
-
+*methPattern* is a pipeline for working with Whole Genome Bisulfite Sequenced (WGBS) data.
+It converts bam files to compact presentation formats, keeping only data regarding the CpG sites.
+The CpG sites are prefixed, indexed and named CpG1, CpG2, …, CpG28217448, according to their order on the human genome ([hg19](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.13/)).
+ 
 ### Input format:
 [bam file](https://samtools.github.io/hts-specs/SAMv1.pdf), generated from fastq using bwa-meth, or bismark, for example.
 ### Output formats:
@@ -51,7 +49,7 @@ content = reshape(content, 2, N);
 > content <- matrix(readBin(fname, "integer", N, size=1), N / 2, 2, byrow=TRUE)
 ```
 
-**Note**: this uint8 format limits the values to be under 256. In case a CpG site appear over 255 times in the input bam, its representation is normalized. For example, if site CpG100 appeared 510 times, from which 100 times it was methylated, the 100'th row will be (50, 255).
+**Note**: this uint8 format limits the values to be under 256. In case a CpG site appears over 255 times in the input bam, its representation is normalized. For example, if site CpG100 appeared 510 times, from which 100 times it was methylated, the 100'th row will be (50, 255).
 
 For each of the 28,217,448 CpG sites in the human genome (hg19), it holds 2 values: the #meth and #covered.
 a binary file, 
@@ -60,55 +58,21 @@ a binary file,
 ## pat.gz file
 A gzipped tab separated file with four columns: chromosome, CpG_index, methylation_pattern, count.
 Each line in the file stands for a single read from the bam file. In case it's pair-end, the two paired lines from the bam file are merged into a single line in the pat file (see example).
-A line shows the methylation pattern of the read. Every CpG site from the read is represented as a single character: 'C' for methylated, 'T' for unmethylated, or '.' for unknown. The rest of the nucleotides are ignored. If a read contains no CpG sites with known methylation state, it is ignored.
+A line shows the methylation pattern of the read. Every CpG site from the read is represented as a single character: 
+- 'C' for methylated
+- 'T' for unmethylated
+- '.' for unknown state
+// todo: remove the 'D' character
+The rest of the nucleotides, and therefore the genomic distances between adjacent CpG sites, are ignored. If a read contains no CpG sites with known methylation state, it is ignored.
 
 Example:
-
-- chrom: value is a string from {chr1, chr2, …, chrX, chrY or chrM}
+// todo: add example
+- chrom: value is a string from _{chr1, chr2, …, chrX, chrY, chrM}_
 - CpG_index: integer in range [1-28217448]. The index of the first site occurring on the current read. The file is sorted by this column.
 - methylation pattern: a string of characters from {'C', 'T', '.'} representing the methylation pattern on the current read.
 
-Note: order of pat file is different from the genome browser order (sort -k1,1 -k2,2n)
-Sorted by CpG_index column
-Add example of paired end
-Remove 'D' character from patter.
+**Note:** The pat file is sorted by CpG_index column, differ from the genome browser order (sort -k1,1 -k2,2n)
 
 
 
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/nloyfer/methPattern/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/nloyfer/methPattern/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
