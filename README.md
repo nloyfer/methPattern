@@ -60,9 +60,10 @@ Each line in the file stands for a single read from the bam file. A line shows t
 The rest of the nucleotides, and therefore the genomic distances between adjacent CpG sites, are ignored. If a read contains no CpG sites with known methylation state, it is ignored.
 In case it's pair-end, the two paired lines from the bam file are merged into a single line in the pat file (see example).
 
-- chrom: value is a string from _{chr1, chr2, …, chrX, chrY, chrM}_
-- CpG_index: integer in range [1,28217448]. The index of the first site occurring on the current read. The file is sorted by this column.
-- methylation pattern: a string of characters from {'C', 'T', '.'} representing the methylation pattern on the current read.
+- *chrom*: value is a string from _{chr1, chr2, …, chrX, chrY, chrM}_
+- *CpG_index*: integer in range [1,28217448]. The index of the first site occurring on the current read. The file is sorted by this column.
+- *methylation pattern*: a string of characters from {'C', 'T', '.'} representing the methylation pattern on the current read.
+- *count*: The number of times a read with these exact values (chrom, CpG_index and methylation pattern) occurred.
 
 
 #### Examples
