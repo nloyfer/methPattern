@@ -98,4 +98,10 @@ similar to pat.gz, but with two extra fields:
 The count field was removed, since we do not expect to see two (or more) reads with identical values.
 // todo: right? should we return the count field? should we drop duplicated lines?
 
+#### remarks / future work:
+- patter makes no quality filtering.
+- in case 2 reads from the same pair differ, it outputs '.', instead of taking the one with higher quality
+- should skip the first/last X characters in every read, because of the methylation bias
+- remove leading dots in pat format (e.g '..CC' shoud be 'CC') todo: patter should take the genoma.fa reference as input
+
 
