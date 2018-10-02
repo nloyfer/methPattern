@@ -70,7 +70,7 @@ In case it's pair-end, the two paired lines from the bam file are merged into a 
 #### Single-end file
 ```
 // bam file:
-example_name	2	chr1	10751	1	12M	=	0	12	CCGCGCCAACGC	JF-JF<<7<A7J
+r001	2	chr1	10751	1	12M	=	0	12	CCGCGCCAACGC	JF-JF<<7<A7J
 
 // pat file:
 chr1	47	CCTC	1
@@ -80,8 +80,8 @@ The read covers 4 CpG sites: CpG47 (methylated), CpG48 (methylated), CpG49 (*unm
 #### Paired-end file
 ```
 // bam file:
-example_name	163	chr1	10751	1	12M	=	10778	40	CCGCGCCAACGC	JF-JF<<7<A7J
-example_name	83	chr1	10778	1	12M	=	10751	-40	CACCGCGCCGAC	FJJFJJFFA-AA
+r001	163	chr1	10751	1	12M	=	10778	40	CCGCGCCAACGC	JF-JF<<7<A7J
+r001	83	chr1	10778	1	12M	=	10751	-40	CACCGCGCCGAC	FJJFJJFFA-AA
 
 // pat file:
 chr1	47	CCTC..TCCC	1
