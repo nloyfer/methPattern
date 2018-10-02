@@ -92,6 +92,10 @@ The pair of reads covers 40bp and 10 CpG sites. However, there is a small gap be
 **Note:** The pat file is sorted by CpG_index column, which is different from the genome browser order (sort -k1,1 -k2,2n)
 
 ## unq.gz file
-A gzipped...
+similar to pat.gz, but with two extra fields:
+- *start_loci*: the genomic position this reads starts at.
+- *read_length*: read length in base-pairs.
+The count field was removed, since we do not expect to see two (or more) reads with identical values.
+// todo: right? should we return the count field? should we drop duplicated lines?
 
 
