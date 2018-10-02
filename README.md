@@ -86,7 +86,7 @@ r001	83	chr1	10778	1	12M	=	10751	-40	CACCGCGCCGAC	FJJFJJFFA-AA
 // pat file:
 chr1	47	CCTC..TCCC	1
 ```
-The pair of reads covers 40bp and 10 CpG sites. However, there is a small gap between them, so two sites (CpG51, CpG53) have unknown methylation state.
+The pair of reads covers 40bp and 10 CpG sites. However, there is a small gap between them, so two sites (CpG51, CpG52) have unknown methylation state.
 
 
 **Note:** The pat file is sorted by CpG_index column, which is different from the genome browser order (sort -k1,1 -k2,2n)
