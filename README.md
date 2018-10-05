@@ -29,14 +29,9 @@ CpGi's beta value is obtained by dividing *#meth*/*#coverage*.
 94.841405643770472
 ```
 
-### matlab    // todo: test this, and ask Tommy to look at it (is there a more elegant way of reading it?)
+### matlab
 ```matlab
-f = dir(PATH); 
-fid=fopen(f.name);
-content = fread(fid, f.bytes, 'uint8');
-fclose(fid);
-N = length(content) / 2,;
-content = reshape(content, 2, N);
+fid=fopen(PATH,'r'); content=fread(fid); fclose(fid); A=reshape(content,2,[])';
 ```
 
 
