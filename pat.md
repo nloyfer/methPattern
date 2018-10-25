@@ -8,7 +8,11 @@ Here is a naive approach:
 zcat PAT_PATH | awk 'x=1000000 {if (x < $2) {exit}} {if ($2 + length($3) >= x) {print}}'
 ```
 This idea: parse the _pat_ file from the beginning. Stop when we see a read starting at a site greater than x (`if (x < $2) {exit}`). Now, for each read we parse, we know it starts before x, so it's enough to check if it ends afterwards (`if ($2 + length($3) >= x) {print}`). This results in all the reads covering site x.
-Running time can be significantly improved, for example using zgrep, but it is still slow comparing to _patPeek_.
+Running time can be significantly improved, for example using zgrep:
+```
+zgrep '^chr6' PAT_PATH | awk 'x=1000000 {if (x < $2) {exit}} {if ($2 + length($3) >= x) {print}}'
+```
+but it is still slow comparing to _patPeek_.
 
 # patPeek - 
 
