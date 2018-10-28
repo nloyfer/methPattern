@@ -28,6 +28,13 @@ CpGi's beta value is obtained by dividing *#meth*/*#coverage*.
 >>> np.mean(content[:, 1])   # print average coverage
 94.841405643770472
 ```
+##### Fast Random Access:
+```python
+# reading only sites CpGi to CpGj (inclusive):
+with open(PATH, 'rb') as f:
+    f.seek((i-1) * 2)
+    res = np.fromfile(f, dtype=np.uint8, count=((j-i+1) * 2)).reshape((-1, 2))
+```
 
 ### matlab
 ```matlab
