@@ -46,7 +46,7 @@ fid=fopen(PATH,'r'); content=fread(fid); fclose(fid); A=reshape(content,2,[])';
 ```R
 > fname <- PATH
 > N <- file.info(fname)$size
-> content <- matrix(readBin(fname, "integer", N, size=1), N / 2, 2, byrow=TRUE)
+> content <- matrix(readBin(fname, "integer", N, size=1, signed=FALSE), N / 2, 2, byrow=TRUE)
 ```
 
 **Note**: this uint8 format limits values to range [0,255]. In case a CpG site appears over 255 times in the input bam, its representation is normalized to this range. For example, if site CpG100 appeared 510 times, from which 100 times it was methylated, the 100'th row will be (50, 255).
