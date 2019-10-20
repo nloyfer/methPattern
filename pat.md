@@ -3,7 +3,7 @@ _pat_ files are often large files, so in order to quickly access an arbitary reg
 From bgzip documentation:
 >  Bgzip compresses files in a similar manner to, and compatible with, gzip(1). The file is compressed into a series of small (less than 64K) 'BGZF' blocks. This allows indexes to be built against the compressed file and used to retrieve portions of the data without having to decompress the entire file.
 
-bgzip compresses the file in a blocks structure, which allows for accessing arbitary locations in the file, using a small index file it generates (`*pat.gz.csi`). _patPeek_ exploits this feature to perform binary search on the _pat_ file, looking for the desired region.
+tabix is able to quickly retrieve data lines overlapping regions specified in the format "chr:beginPos-endPos". We abuse _tabix_ a little bit, by setting the CpG index as both beginPos and endPos, and add some extra work to include reads that start before, but end within, the requested region.
 
 
 
