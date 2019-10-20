@@ -1,22 +1,21 @@
-# methPattern
-*methPattern* is a pipeline for working with Whole Genome Bisulfite Sequenced (WGBS) data.
-It converts bam files to compact presentation formats, keeping only data regarding the CpG sites.
+# pat format
+*pat* is a compact format for representing Whole Genome Bisulfite Sequenced (WGBS) methylation data.
+It replaces bam files with a compact file, keeping only data regarding the CpG sites.
 The CpG sites are fixed, indexed and named CpG1, CpG2, …, CpG28217448, according to their order on the human genome ([hg19](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.13/)).
  
 ### Input format:
-[bam file](https://samtools.github.io/hts-specs/SAMv1.pdf), generated from fastq using bwa-meth, or bismark, for example.
+[bam file](https://samtools.github.io/hts-specs/SAMv1.pdf), generated from fastq using bwa-meth, bismark, etc.
 ### Output formats:
-methPattern generates 3 output files from a given bam file:
+We support 3 output files from a given bam file:
 1. beta
 2. pat.gz
-3. unq.gz
+3. unq.gz (partially supported)
 
 ## beta file
-beta file is the simplest representation of methylation data. It is a binary file with a fixed size of 56,434,896 bytes (~54MB), holding a
- matrix of uint8 values with dimensions of (28,217,448 x 2).
+beta file is the simplest representation of methylation data. It is a binary file with a fixed size of 56,434,896 bytes (~54MB), holding a matrix of uint8 values with dimensions of (28,217,448 x 2).
 For each of the 28,217,448 CpG sites in hg19, it holds 2 values: the #meth and #covered. Meaning, the i'th row in the matrix corresponds to the i'th CpG site:
 - *#meth*: the number of times the i'th site (CpGi) site is observed in a methylated state.
-- *#coverage*: the total number of times i'th site (CpGi) site is observed. #coverage==0 is equivalent to a missing value (NaN).
+- *#coverage*: the total number of times i'th site (CpGi) site is observed. #coverage==0 is equivalent to a missing value.
 
 CpGi's beta value is obtained by dividing *#meth*/*#coverage*.
 
