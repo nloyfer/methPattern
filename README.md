@@ -96,13 +96,9 @@ The pair of reads covers 40bp and 10 CpG sites. However, there is a small gap be
 similar to pat.gz, but with two extra fields:
 - *start_loci*: the genomic position this reads starts at.
 - *read_length*: read length in base-pairs.
-The count field was removed, since we do not expect to see two (or more) reads with identical values.
-// todo: right? should we return the count field? should we drop duplicated lines?
 
 #### remarks / future work:
-- patter makes no quality filtering. Ignors both mapping quality (MAPQ) and base quality (QUAL).
-- in case 2 reads from the same pair differ, it outputs '.', instead of taking the one with higher quality
-- should skip the first/last X characters in every read, because of the methylation bias
-- remove leading dots in pat format (e.g '..CC' shoud be 'CC') todo: patter should take the genoma.fa reference as input
+- in case 2 reads from the same pair disagree on a site, it's treated as a missing site ('.').
+- We skip the first/last 3 characters in every read, because of the methylation bias
 
 
